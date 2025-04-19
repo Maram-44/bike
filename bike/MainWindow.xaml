@@ -1,0 +1,168 @@
+﻿<Window x:Class="bike.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:bike"
+        Title="MainWindow" Height="450" Width="800"
+        Background="#F5F5F5">
+
+    <Window.Resources>
+
+        <!-- ظل -->
+        <DropShadowEffect x:Key="DropShadow"
+                          BlurRadius="15"
+                          ShadowDepth="3"
+                          Direction="270"
+                          Opacity="0.3"
+                          Color="Black"/>
+
+        <!-- رأس الجدول -->
+        <Style TargetType="DataGridColumnHeader">
+            <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="DataGridColumnHeader">
+                        <Border Background="#002147"
+                                Padding="10"
+                                CornerRadius="10"
+                                Margin="2">
+                            <ContentPresenter HorizontalAlignment="Stretch"
+                                              VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- صف الجدول -->
+        <Style TargetType="DataGridRow">
+            <Setter Property="SnapsToDevicePixels" Value="True"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="DataGridRow">
+                        <Border x:Name="RowBorder"
+                                Background="{TemplateBinding Background}"
+                                CornerRadius="10"
+                                Padding="10"
+                                Margin="2">
+                            <DataGridCellsPresenter/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter TargetName="RowBorder" Property="Background" Value="#DDDDDD"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- محول ظهور الزر -->
+        <local:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
+
+    </Window.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <!-- العنوان -->
+            <RowDefinition Height="*"/>
+            <!-- القريد -->
+        </Grid.RowDefinitions>
+
+        <!-- عنوان خارج القريد -->
+        <Border Margin="20">
+            <TextBlock Text="List of financial dues for employees"
+                       FontSize="26"
+                       FontWeight="Bold"
+                       Foreground="Black"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"/>
+        </Border>
+
+        <!-- قريد البيانات -->
+        <DataGrid x:Name="StaffDataGrid"
+                  Grid.Row="1"
+                  AutoGenerateColumns="False"
+                  CanUserAddRows="False"
+                  HeadersVisibility="Column"
+                  SelectionMode="Single"
+                  SelectionUnit="FullRow"
+                  GridLinesVisibility="None"
+                  BorderThickness="0"
+                  Background="Transparent"
+                  RowBackground="White"
+                  Margin="20"
+                  RowHeaderWidth="0"
+                  SelectionChanged="StaffDataGrid_SelectionChanged_1">
+
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Opration Number" Binding="{Binding [Opration Number]}" Width="150"/>
+                <DataGridTextColumn Header="Name Staff" Binding="{Binding [Name Staf]}" Width="200"/>
+                <DataGridTextColumn Header="Id Staff" Binding="{Binding [Id Staff]}" Width="150"/>
+                <DataGridTextColumn Header="Opratin Date" Binding="{Binding [Opratin Date]}" Width="200"/>
+                <DataGridTextColumn Header="Amount Due" Binding="{Binding amountDue}" Width="170"/>
+                <DataGridTextColumn Header="Description" Binding="{Binding description}" Width="250"/>
+                <DataGridTemplateColumn Header="Documents" Width="100">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Click="ViewImageButton_Click"
+                    Width="40" Height="40"
+                    Background="#94B4C1"
+                    BorderBrush="Transparent"
+                    Padding="5"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center">
+                                <Button.Template>
+                                    <ControlTemplate TargetType="Button">
+                                        <Border Background="{TemplateBinding Background}" 
+                                CornerRadius="20"
+                                BorderThickness="0"
+                                Width="40" Height="40">
+                                            <Image Source="/Resourses/Icons/eye.png"
+                                                   Stretch="Uniform"
+                                                   Width="20" Height="20"
+                                                   VerticalAlignment="Center"
+                                                   HorizontalAlignment="Center"/>
+                                        </Border>
+                                    </ControlTemplate>
+                                </Button.Template>
+                            </Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+
+                <DataGridTemplateColumn Header="" Width="250">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                <Button Content="Accetable"
+                                        Background="DarkCyan"
+                                        Foreground="White"
+                                        Width="100"
+                                        Margin="7"
+                                        Padding="10"
+                                        Click="AcceptButton_Click"
+                                        Visibility="{Binding RelativeSource={RelativeSource AncestorType=DataGridRow}, Path=IsSelected, Converter={StaticResource BoolToVisibilityConverter}}"/>
+                                <Button Content="Unccetable"
+                                        Background="Red"
+                                        Foreground="White"
+                                        Width="100"
+                                        Margin="7"
+                                        Padding="10"
+                                        Click="RejectButton_Click"
+                                        Visibility="{Binding RelativeSource={RelativeSource AncestorType=DataGridRow}, Path=IsSelected, Converter={StaticResource BoolToVisibilityConverter}}"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+            </DataGrid.Columns>
+
+        </DataGrid>
+
+    </Grid>
+
+</Window>
