@@ -29,24 +29,24 @@
 
             <!--right sec-->
             <Border Grid.Row="1" Grid.Column="1" CornerRadius="0 0 5 0" Background="LightBlue" Grid.ColumnSpan="2"/>
-            <Button Content="the price before the tax" Margin="49,460,19,210" Grid.Row="1" Grid.Column="1" FontFamily="Segoe UI Semibold" FontSize="20" FontWeight="Bold" >
+            <Button x:Name="ThePiceAfterTheTaxBtn" Content="the price after the tax" Margin="49,460,19,210" Grid.Row="1" Grid.Column="1" FontFamily="Segoe UI Semibold" FontSize="20" FontWeight="Bold" Click="Button_Click1" >
                 <Button.Background>
                     <RadialGradientBrush>
                         <GradientStop Color="LightBlue" Offset="0.273"/>
-                        <GradientStop Color="#FFE0E2FD" Offset="1"/>
+                        <GradientStop Color="White" Offset="1"/>
                     </RadialGradientBrush>
                 </Button.Background>
             </Button>
-            <Button Content="the price after the tax" Margin="49,250,19,421" Grid.Row="1" Grid.Column="1" FontWeight="Bold" FontFamily="Segoe UI Semibold" FontSize="20">
+            <Button x:Name="ThePiceBeforheTaxBtn" Content="the price befor the tax" Margin="49,250,19,421" Grid.Row="1" Grid.Column="1" FontWeight="Bold" FontFamily="Segoe UI Semibold" FontSize="20" Click="Button_Click">
                 <Button.Background>
                     <RadialGradientBrush>
                         <GradientStop Color="LightBlue" Offset="0.223"/>
-                        <GradientStop Color="#FFE0E2FD" Offset="1"/>
+                        <GradientStop Color="White" Offset="1"/>
                     </RadialGradientBrush>
                 </Button.Background>
             </Button>
-            <TextBox Margin="84,156,54,515" Background="#FFF7F1F1" TextChanged="TextBox_TextChanged" TextWrapping="NoWrap" BorderThickness="1,1,1,1" Grid.Column="1" Grid.Row="1" />
-            <TextBox Margin="88,364,50,307" Background="#FFF7F1F1" TextChanged="TextBox_TextChanged" TextWrapping="NoWrap" BorderThickness="1,1,1,1" Grid.Column="1" Grid.Row="1" />
+            <TextBox x:Name="PriceBeforeTaxTextBlock" Margin="84,156,54,515" Background="#FFF7F1F1" TextChanged="TextBox_TextChanged" TextWrapping="NoWrap" BorderThickness="1,1,1,1" Grid.Column="1" Grid.Row="1" FontSize="15" IsEnabled="False" />
+            <TextBox x:Name="PriceAfterTaxTextBlock" Margin="88,364,50,307" Background="#FFF7F1F1" TextChanged="TextBox_TextChanged" TextWrapping="NoWrap" BorderThickness="1,1,1,1" Grid.Column="1" Grid.Row="1" IsEnabled="False" FontSize="15" />
 
 
 
@@ -88,15 +88,15 @@
                 <StackPanel Orientation="Horizontal"  Margin="10,10,166,10">
                     <TextBlock Text="import detalis" Foreground="#374655" FontSize="18" FontWeight="SemiBold" Margin="15 0 0 0 " VerticalAlignment="Center"></TextBlock>
                 </StackPanel>
-                <TextBox Margin="218,99,204,-89" Background="#FFF7F1F1" TextChanged="TextBox_TextChanged" TextWrapping="NoWrap" BorderThickness="1,1,1,1" Grid.ColumnSpan="2" />
-                <TextBox Margin="216,151,206,-141" Background="#FFF7F1F1" TextChanged="TextBox_TextChanged" TextWrapping="NoWrap" BorderThickness="1,1,1,1" Grid.ColumnSpan="2" />
-                <TextBox Margin="214,376,208,-366" Background="#FFF7F1F1" TextChanged="TextBox_TextChanged" TextWrapping="NoWrap" BorderThickness="1,1,1,1" Grid.ColumnSpan="2" />
-                <TextBox Margin="214,317,208,-307" Background="#FFF7F1F1" TextChanged="TextBox_TextChanged" TextWrapping="NoWrap" BorderThickness="1,1,1,1" Grid.ColumnSpan="2" />
-                <TextBox Margin="216,259,206,-249" Background="#FFF7F1F1" TextChanged="TextBox_TextChanged" TextWrapping="NoWrap" BorderThickness="1,1,1,1" Grid.ColumnSpan="2" />
-                <TextBox Margin="216,205,206,-195" Background="#FFF7F1F1" TextChanged="TextBox_TextChanged" TextWrapping="NoWrap" BorderThickness="1,1,1,1" Grid.ColumnSpan="2" />
-                <TextBox Margin="214,552,208,-541" Background="#FFF7F1F1" TextChanged="TextBox_TextChanged" TextWrapping="NoWrap" BorderThickness="1,1,1,1" Grid.ColumnSpan="2" />
-                <TextBox Margin="214,494,208,-484" Background="#FFF7F1F1" TextChanged="TextBox_TextChanged" TextWrapping="NoWrap" BorderThickness="1,1,1,1" Grid.ColumnSpan="2" />
-                <TextBox Margin="214,434,208,-424" Background="#FFF7F1F1" TextChanged="TextBox_TextChanged" TextWrapping="NoWrap" BorderThickness="1,1,1,1" Grid.ColumnSpan="2" />
+                <TextBox x:Name="TotalGoodsCostTextBox" Margin="218,99,204,-89" Background="#FFF7F1F1" TextChanged="TextBox_TextChanged" TextWrapping="NoWrap" BorderThickness="1,1,1,1" Grid.ColumnSpan="2" />
+                <TextBox x:Name="ShippingCostsTextBox" Margin="216,151,206,-141" Background="#FFF7F1F1" TextChanged="TextBox_TextChanged" TextWrapping="NoWrap" BorderThickness="1,1,1,1" Grid.ColumnSpan="2" />
+                <TextBox x:Name="LocalCostsTextBox" Margin="214,376,208,-366" Background="#FFF7F1F1" TextChanged="TextBox_TextChanged" TextWrapping="NoWrap" BorderThickness="1,1,1,1" Grid.ColumnSpan="2" />
+                <TextBox x:Name="ExchangeRateTextBox" Margin="214,317,208,-307" Background="#FFF7F1F1" TextChanged="TextBox_TextChanged" TextWrapping="NoWrap" BorderThickness="1,1,1,1" Grid.ColumnSpan="2" />
+                <TextBox x:Name="CustomsDutyRateTextBox" Margin="216,259,206,-249" Background="#FFF7F1F1" TextChanged="TextBox_TextChanged" TextWrapping="NoWrap" BorderThickness="1,1,1,1" Grid.ColumnSpan="2" />
+                <TextBox x:Name="InsuranceRateTextBox" Margin="216,205,206,-195" Background="#FFF7F1F1" TextChanged="TextBox_TextChanged" TextWrapping="NoWrap" BorderThickness="1,1,1,1" Grid.ColumnSpan="2" />
+                <TextBox x:Name="VATTextBox" Margin="214,552,208,-541" Background="#FFF7F1F1" TextChanged="TextBox_TextChanged" TextWrapping="NoWrap" BorderThickness="1,1,1,1" Grid.ColumnSpan="2" />
+                <TextBox x:Name="ProfitMarginTextBox" Margin="214,494,208,-484" Background="#FFF7F1F1" TextChanged="TextBox_TextChanged" TextWrapping="NoWrap" BorderThickness="1,1,1,1" Grid.ColumnSpan="2" />
+                <TextBox x:Name="NumShippedUnitsTextBox" Margin="214,434,208,-424" Background="#FFF7F1F1" TextChanged="TextBox_TextChanged" TextWrapping="NoWrap" BorderThickness="1,1,1,1" Grid.ColumnSpan="2" />
 
 
             </Grid>
